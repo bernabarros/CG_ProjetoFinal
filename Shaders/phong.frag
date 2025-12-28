@@ -1,12 +1,14 @@
 ﻿#version 330 core
+
 in vec4 fragColor;
+in float AOFactor;
 out vec4 OutputColor;
 
 uniform vec3 AmbientLight;
 
 void main()
 {
-    vec3 litColor = fragColor.rgb * AmbientLight;
+    vec3 litColor = fragColor.rgb * AmbientLight * AOFactor;
     OutputColor = vec4(litColor, fragColor.a);
 }
 
