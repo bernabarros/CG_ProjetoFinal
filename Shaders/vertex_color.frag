@@ -12,5 +12,3 @@ void main()
     
     FragColor = vec4(ambient, outColor.a);
 }
-
-
