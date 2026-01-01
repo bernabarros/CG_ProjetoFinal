@@ -14,6 +14,9 @@ namespace OpenTKBase
     {
         public enum MatrixType { Identity = 0, Clip = 1, Projection = 2, Camera = 3, World = 4, Max = 5 };
 
+        public int ProgramHandle => handle;
+
+
         static public MatrixType StringToMatrixType(string m)
         {
             switch (m)

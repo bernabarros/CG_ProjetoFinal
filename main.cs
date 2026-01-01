@@ -1,4 +1,5 @@
-﻿using OpenTK.Mathematics;
+﻿using CG_ProjetoFinal;
+using OpenTK.Mathematics;
 using OpenTKBase;
 using System;
 
@@ -95,7 +96,7 @@ namespace SDLBase
             FirstPersonController fps = cameraObject.AddComponent<FirstPersonController>();
 
             // Create pipeline
-            RPS renderPipeline = new RPS();
+            RPS_SSAO renderPipeline = new RPS_SSAO();
 
             app.Run(() =>
             {
