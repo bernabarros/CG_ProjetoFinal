@@ -91,7 +91,7 @@ namespace SDLBase
             // Create camera
             GameObject cameraObject = new GameObject();
             Camera camera = cameraObject.AddComponent<Camera>();
-            camera.transform.position = new Vector3(0.0f, 2.0f, 0.0f);
+            camera.transform.position = new Vector3(0.0f, 10.0f, 40.0f);
             camera.ortographic = false;
             FirstPersonController fps = cameraObject.AddComponent<FirstPersonController>();
 

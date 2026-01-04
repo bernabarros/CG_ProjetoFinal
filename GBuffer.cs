@@ -24,12 +24,10 @@ namespace CG_ProjetoFinal
             // Normal texture
             NormalTexture = GL.GenTexture();
             GL.BindTexture(TextureTarget.Texture2D, NormalTexture);
-            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgb16f, Width, Height, 0,
-                PixelFormat.Rgb, PixelType.Float, IntPtr.Zero);
+            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgb16f, Width, Height, 0, PixelFormat.Rgb, PixelType.Float, IntPtr.Zero);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
-            GL.FramebufferTexture2D(FramebufferTarget.Framebuffer, FramebufferAttachment.ColorAttachment0,
-                TextureTarget.Texture2D, NormalTexture, 0);
+            GL.FramebufferTexture2D(FramebufferTarget.Framebuffer, FramebufferAttachment.ColorAttachment1, TextureTarget.Texture2D, NormalTexture, 0);
 
             // Depth texture
             DepthTexture = GL.GenTexture();

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -21,10 +22,10 @@ namespace CG_ProjetoFinal
 
         public RPS_SSAO()
         {
+            fullscreenVAO = GL.GenVertexArray();
+
             gBuffer = new GBuffer();
             geometryMaterial = new Material(Shader.Find("Shaders/geometry"));
-
-            fullscreenVAO = GL.GenVertexArray();
         }
 
 
@@ -40,8 +41,6 @@ namespace CG_ProjetoFinal
                 GeometryPass(scene, camera, renderables);
 
                 DebugDrawNormals(1280,720);
-
-
             }
         }
 
@@ -51,7 +50,7 @@ namespace CG_ProjetoFinal
 
             GL.Viewport(0,0,1280,720);
 
-            //GL.ClearColor(1f,0f,1f,1f);
+            GL.ClearColor(0f,0f,0f,0f);
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
@@ -61,6 +60,15 @@ namespace CG_ProjetoFinal
             
             foreach (var renderable in renderables)
             {
+                var meshRenderer = renderable.GetComponent<MeshRenderer>();
+
+                if (meshRenderer != null && meshRenderer.material != null)
+                {
+                    OpenTK.Mathematics.Color4 mainColor = meshRenderer.material.GetColor("Color");
+
+                    geometryMaterial.SetColor("Color", mainColor);
+                }
+                
                 renderable.RenderWithMaterial(camera, geometryMaterial);
             }
             
@@ -71,6 +79,7 @@ namespace CG_ProjetoFinal
         private void DebugDrawNormals(int windowWidth, int windowHeight)
         {
             GL.BindFramebuffer(FramebufferTarget.Framebuffer, 0);
+            GL.Viewport(0,0, 1280,720);
 
             GL.Disable(EnableCap.DepthTest);
 
@@ -83,7 +92,9 @@ namespace CG_ProjetoFinal
             // Bind the normal texture
             GL.ActiveTexture(TextureUnit.Texture0);
             GL.BindTexture(TextureTarget.Texture2D, gBuffer.NormalTexture);
-            GL.Uniform1(GL.GetUniformLocation(debugNormalShader.ProgramHandle, "gNormal"), 0);
+            
+            int loc = GL.GetUniformLocation(debugNormalShader.ProgramHandle, "gNormal");
+            if (loc != -1) GL.Uniform1(loc, 0);
 
             // Draw fullscreen triangle
             GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
