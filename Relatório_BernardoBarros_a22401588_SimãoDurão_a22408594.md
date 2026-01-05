@@ -28,6 +28,15 @@ Porém o teste revelou falhas na implementação, apenas sendo possível obter u
 
 Idealmente, se a questão tivesse sido resolvida, iriamos passar para implementação do kernel que faria as amostras para verificar o fator de oclusão de cada pixel e através dessa informação aplicar ao fator da luz ambiente. Seria também usado um blur para melhorar o aspeto gráfico da cena gerada.
 
+Para a implementação da técnica de Screen Space Shadows (SSS), partimos com o objetivo de simular o bloqueio da luz direta pelas árvores. Queriamos garantir que ao projetar uma luz direcional na floresta, as árvores projetassem umas sombras.
+
+Na nossa primeira tentativa, tentamos modificar os shaders existentes para ver o que se poderia assimilar com uma sombra mas como não havia um shader de luz ainda não se poderia ver ainda o efeito das sombras. 
+
+Na segunda, tentamos implementar os shader lightmatrix_sss, depthmap_sss, fragshader_sss e a Render Pipeline (RPS_SSS). Esses shaders fazem todos parte da tecnica SSS, eles são recursos fundamentais para tal se não funcionar pode haverá SSS. Ao testar foi impossivel validar o funcionamento dela, o  programa acabou fechar sozinho.
+
+Depois de tentativa e erro, para resolver o Render Pipeline e conseguir o por a funcionar corretamente para verificar o funcionamento dos shaders. Houve momentos onde o ecrã fica só com a cor preta e indicava erros na consola. Depois de alguns segundos acabava por fechar.
+
+
 
 ## Conclusão
 
