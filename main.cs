@@ -88,6 +88,14 @@ namespace SDLBase
                 CreateRandomTree(rnd, forestSize);
             }
 
+            // Create Light    
+            GameObject sunObject = new GameObject();
+            sunObject.transform.rotation = Quaternion.FromEulerAngles(
+                MathHelper.DegreesToRadians(-45.0f), 
+                MathHelper.DegreesToRadians(45.0f), 
+                0.0f
+            );
+
             // Create camera
             GameObject cameraObject = new GameObject();
             Camera camera = cameraObject.AddComponent<Camera>();
@@ -95,8 +103,13 @@ namespace SDLBase
             camera.ortographic = false;
             FirstPersonController fps = cameraObject.AddComponent<FirstPersonController>();
 
+            var depthShader = Shader.Find("Shaders/simpleDepth");
+            var sssShader = Shader.Find("Shaders/sss");
             // Create pipeline
-            RPS_SSAO renderPipeline = new RPS_SSAO();
+            RPS_SSS renderPipeline = new RPS_SSS();
+
+            renderPipeline.DepthShaderId = depthShader.ProgramHandle; 
+            renderPipeline.SSSShaderId = sssShader.ProgramHandle;
 
             app.Run(() =>
             {
