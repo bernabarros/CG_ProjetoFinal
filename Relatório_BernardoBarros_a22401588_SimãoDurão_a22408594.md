@@ -28,16 +28,38 @@ Porém o teste revelou falhas na implementação, apenas sendo possível obter u
 
 Idealmente, se a questão tivesse sido resolvida, iriamos passar para implementação do kernel que faria as amostras para verificar o fator de oclusão de cada pixel e através dessa informação aplicar ao fator da luz ambiente. Seria também usado um blur para melhorar o aspeto gráfico da cena gerada.
 
-Para a implementação da técnica de Screen Space Shadows (SSS), partimos com o objetivo de simular o bloqueio da luz direta pelas árvores. Queriamos garantir que ao projetar uma luz direcional na floresta, as árvores projetassem umas sombras.
+Para a implementação da técnica de Screen Space Shadows (SSS), partimos com o objetivo de simular o bloqueio da luz direta pelas árvores. Queríamos garantir que ao projetar uma luz direcional na floresta, as árvores projetassem umas sombras.
 
-Na nossa primeira tentativa, tentamos modificar os shaders existentes para ver o que se poderia assimilar com uma sombra mas como não havia um shader de luz ainda não se poderia ver ainda o efeito das sombras. 
+Na nossa primeira tentativa, tentamos modificar os shaders existentes para ver o que se poderia assimilar com uma sombra, mas como não havia um shader de luz, ainda não se poderia ver o efeito das sombras. 
 
-Na segunda, tentamos implementar os shader lightmatrix_sss, depthmap_sss, fragshader_sss e a Render Pipeline (RPS_SSS). Esses shaders fazem todos parte da tecnica SSS, eles são recursos fundamentais para tal se não funcionar pode haverá SSS. Ao testar foi impossivel validar o funcionamento dela, o  programa acabou fechar sozinho.
+Na segunda, tentamos implementar os shader lightmatrix_sss, depthmap_sss, fragshader_sss e a Render Pipeline (RPS_SSS). Esses shaders fazem todos parte da técnica SSS, eles são recursos fundamentais para tal, se não funcionarem, pode haver SSS. Ao testar foi impossível validar o funcionamento dela, o  programa acabou fechando sozinho.
 
-Depois de tentativa e erro, para resolver o Render Pipeline e conseguir o por a funcionar corretamente para verificar o funcionamento dos shaders. Houve momentos onde o ecrã fica só com a cor preta e indicava erros na consola. Depois de alguns segundos acabava por fechar.
-
-
+Depois de tentativa e erro, para resolver o Render Pipeline e conseguir o por a funcionar corretamente para verificar o funcionamento dos shaders. Houve momentos em que o ecrã ficava só com a cor preta e indicava erros na consola. Depois de alguns segundos acabava por fechar.
 
 ## Conclusão
 
+Concluindo, embora as nossas pesquisas sobre os temas selecionados nos tenha dado uma ideia de como funciona tanto a técnica de Ambient Occlusion e Screen Space Shadows, sendo estes tópicos avançados de Computação Gráfica, devidos as complicações na nossa estrutura do G-Buffer e da render pipeline, não foi possível obter uma implementação total destas mesmas.
+
 ## Referências
+
+[https://learnopengl.com/Advanced-Lighting/SSAO](https://learnopengl.com/Advanced-Lighting/SSAO)
+
+[https://github.com/Baksonator/ssao](https://github.com/Baksonator/ssao)
+
+[https://gist.github.com/transitive-bullshit/6770363](https://gist.github.com/transitive-bullshit/6770363)
+
+[https://github.com/lettier/3d-game-shaders-for-beginners/blob/master/sections/ssao.md](https://github.com/lettier/3d-game-shaders-for-beginners/blob/master/sections/ssao.md)
+
+[Preview de SSS](https://www.shadertoy.com/view/mtXfDf)
+
+[Articulo de como implementaram SSS num Game Engine](https://panoskarabelas.com/posts/screen_space_shadows/)
+
+[Shadow Mapping](https://learnopengl.com/Advanced-Lighting/Shadows/Shadow-Mapping)
+
+[Point Shadows](https://learnopengl.com/Advanced-Lighting/Shadows/Point-Shadows)
+
+[Lighting](https://learnopengl.com/Lighting/Basic-Lighting)
+
+[Depth](https://learnopengl.com/Advanced-OpenGL/Depth-testing)
+
+[Github de um SSS em OpenTK](https://github.com/egnawake/screen-space-shadows)
